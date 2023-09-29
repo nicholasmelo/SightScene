@@ -8,21 +8,25 @@
     <link rel="stylesheet" href="/assets/CSS/style.css">
 </head>
 <body>
-    <header>
-        <h1>SightScene</h1>
-        <img scr="" alt="SightScene Logo">
-        <input class="search2" type="search"  placeholder="search another city!">
-        <button class="submit2">submit another city</button>
-        <button class="goBack">go back</button>
-
+    <header class="font-mono flex flex-row justify-around">
+        <h1 class="my-10 p-3 text-5xl">SightScene</h1>
+        <img class="" scr="" alt="SightScene Logo">
+        <input class="search2 border-solid border-2 border-stone-900 my-10 px-2" type="search"  placeholder="search another city!">
+        <button class="submit2 p-0 border-solid border-2 border-stone-900 my-10 px-2 marker:space-x-4">submit another city</button>
+        <button class="goBack border-solid border-2 border-stone-900 my-10 px-2 space-x-4">go back</button>
     </header>
-    <div class="container">
-        <div class="map"></div>
-    </div>
-    <div class="info">
-        <h2 class="currentLocation">current location</h2>
-         <ul class="locations">
-         </ul>
+
+    <div class="grid grid-cols-2 gap-4 font-mono">
+        <div class="map border-solid border-4 border-stone-900 p-2 m-10">
+          <p>This is where the map will go</p>
+          <img src="https://www.kpmindustries.com/wp-content/uploads/2018/08/Placeholder-Map-Image-768x409.png" alt="map placeholder">
+        </div>
+        <div class="info border-solid border-2 border-stone-900 mr-6 mt-10">
+          <h2 class="currentMovie text-center text-3xl p-2 mb-2">Searched Movie Title Here</h2>
+          <ul class="locations text-center">
+            <li>placeholder</li>
+          </ul>
+        </div>
     </div>
     <script src="/assets/JS/script.js" ></script>
 </body>
