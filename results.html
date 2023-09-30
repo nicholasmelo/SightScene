@@ -1,31 +1,43 @@
 <!DOCTYPE html>
+
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Results</title>
+  <head>
+    <meta charset="utf-8" />
+    <title>Sight Scene Home Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="/assets/CSS/style.css">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <style type="text/tailwindcss">
+      @layer utilities {
+        .content-auto {
+          content-visibility: auto;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="/assets/CSS/style.css" />
 </head>
 <body>
-    <header class="font-mono flex flex-row justify-around">
-        <h1 class="my-10 p-3 text-5xl">SightScene</h1>
-        <img class="" scr="" alt="SightScene Logo">
-        <input class="search2 border-solid border-2 border-stone-900 my-10 px-2" type="search"  placeholder="search another movie!">
-        <button class="submit2 p-0 border-solid border-2 border-stone-900 my-10 px-2 marker:space-x-4">Search another Movie</button>
-        <button class="goBack border-solid border-2 border-stone-900 my-10 px-2 space-x-4">Last Movie</button>
-    </header>
+    <div class="container mx-auto px-4">
+        <header class="font-mono flex flex-col sm:flex-row justify-between items-center my-6 sm:my-10">
+            <h1 class="text-3xl sm:text-5xl p-3">SightScene</h1>
+            <div class="flex justify-end space-x-2 sm:space-x-4">
+                <input class="search2 w-auto border-solid border-2 border-stone-900 my-2 px-2" type="search"  placeholder="Search another movie!">
+                <button class="submit2 p-2 border-solid border-2 border-stone-900 my-2">Search another Movie</button>
+                <button class="goBack p-2 border-solid border-2 border-stone-900 my-2">Last Movie</button>
+            </div>
+        </header>
 
-    <div class="grid grid-cols-2 gap-4 font-mono">
-        <div class="map border-solid border-4 border-stone-900 p-2 m-10">
-          <p>This is where the map will go</p>
-          <img src="https://www.kpmindustries.com/wp-content/uploads/2018/08/Placeholder-Map-Image-768x409.png" alt="map placeholder">
-        </div>
-        <div class="info border-solid border-2 border-stone-900 mr-6 mt-10">
-          <h2 class="currentMovie text-center text-3xl p-2 mb-2">Searched Movie Title Here</h2>
-          <ul class="locations text-center">
-            <li>placeholder</li>
-          </ul>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 font-mono">
+            <div class="map border-solid border-2 border-stone-900 p-2 m-2 sm:m-10 col-span-2">
+                <p>This is where the map will go</p>
+                <img src="./assets/Images/Placeholder-Map-Image.png" alt="map placeholder">
+            </div>
+            <div class="info border-solid border-2 border-stone-900 mt-4 sm:mt-10 col-span-1">
+                <h2 class="currentMovie text-center text-2xl sm:text-3xl p-2 mb-2">Searched Movie Title Here</h2>
+                <ul class="locations text-center">
+                    <li>placeholder</li>
+                </ul>
+            </div>
         </div>
     </div>
     <script src="/assets/JS/script.js" ></script>
