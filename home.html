@@ -18,48 +18,12 @@
   </head>
 
   <body>
-    <div class="flex flex-col font-mono">
-    <h1 class="my-10 flex justify-center p-3 text-5xl">Sight Scene</h1>
-    <div class="searchBar flex justify-center space-x-4">
-      <input class="border-solid border-2 border-stone-900 text-center" type="search" placeholder="Movie Title" />
-      <button class="searchBtn border-solid border-2 border-stone-900 p-2">Search</button>
-    </div>
-    </div>
-
-    <script src="/assets/JS/script.js"></script>
-  </body>
-</html>
-
-
-
-
-
-
-<!--Code below is theory for responsive design. Will remove one of two once design is set.-->
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Sight Scene Home Page</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
-    <style type="text/tailwindcss">
-      @layer utilities {
-        .content-auto {
-          content-visibility: auto;
-        }
-      }
-    </style>
-    <link rel="stylesheet" href="/assets/CSS/style.css" />
-  </head>
-
-  <body>
-    <div class="font-mono sm:flex">
-    <h1 class="text-center p-3 font-bold text-lg">Sight Scene</h1>
-    <div class="flex flex-col items-center space-y-2">
-      <input class="searchBar max-w-[50%] border-solid border-2 border-stone-900 text-center text-sm" type="search" placeholder="Movie Title" />
-      <button class="searchBtn max-w-[20%] min-w-[20%] border-solid border-2 border-stone-900 text-xs text-center px-2">Search</button>
-    </div>
+    <div class="container mx-auto px-4 font-mono">
+      <h1 class="text-center p-3 text-lg font-bold sm:mt-6 sm:p-5 sm:text-2xl md:text-4xl lg:text-5xl lg:p-7">Sight Scene</h1>
+      <div class="flex flex-col items-center space-y-2">
+        <input class="searchBar text-center w-1/4 md:w-1/3 border-2 border-solid border-stone-900 text-sm md:max-w-md md:text-base" type="search" placeholder="Movie Title" />
+        <button class="searchBtn text-center w-1/6 border-2 border-solid border-stone-900 px-2 text-xs md:text-base">Search</button>
+      </div>
     </div>
 
     <script src="/assets/JS/script.js"></script>
