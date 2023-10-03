@@ -1,28 +1,44 @@
 <!DOCTYPE html>
+
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Results</title>
+  <head>
+    <meta charset="utf-8" />
+    <title>Sight Scene Home Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="/assets/CSS/style.css">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <style type="text/tailwindcss">
+      @layer utilities {
+        .content-auto {
+          content-visibility: auto;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="/assets/CSS/style.css" />
 </head>
 <body>
-    <header>
-        <h1>SightScene</h1>
-        <img scr="" alt="SightScene Logo">
-        <input class="search2" type="search"  placeholder="search another city!">
-        <button class="submit2">submit another city</button>
-        <button class="goBack">go back</button>
+    <div class="container mx-auto px-4">
+        <header class="font-mono flex flex-col sm:flex-row justify-between items-center my-6 sm:my-10">
+            <h1 class="text-3xl sm:text-5xl p-3">SightScene</h1>
+            <div class="flex justify-center items-center space-x-2 sm:space-x-4">
+                <input class="search2 w-auto border-solid border-2 border-stone-900 my-2 px-2" type="search"  placeholder="Search another movie!">
+                <button class="submit2 p-2 border-solid border-2 border-stone-900 my-2 h-8 md:h-auto">Search</button>
+                <button class="goBack p-2 border-solid border-2 border-stone-900 my-2">Previous Search</button>
+            </div>
+        </header>
 
-    </header>
-    <div class="container">
-        <div class="map"></div>
-    </div>
-    <div class="info">
-        <h2 class="currentLocation">current location</h2>
-         <ul class="locations">
-         </ul>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 font-mono">
+            <div class="map border-solid border-2 border-stone-900 p-2 m-2 sm:m-10 col-span-2">
+                <p>This is where the map will go</p>
+                <img src="./assets/Images/Placeholder-Map-Image.png" alt="map placeholder">
+            </div>
+            <div class="info border-solid border-2 border-stone-900 mt-4 sm:mt-10 col-span-1">
+                <h2 class="currentMovie text-center text-2xl sm:text-3xl p-2 mb-2">Searched Movie Title Here</h2>
+                <ul class="locations text-center">
+                    <li>placeholder</li>
+                </ul>
+            </div>
+        </div>
     </div>
     <script src="/assets/JS/script.js" ></script>
 </body>
