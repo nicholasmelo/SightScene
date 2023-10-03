@@ -14,7 +14,7 @@
         }
       }
     </style>
-    <link rel="stylesheet" href="/assets/CSS/style.css" />
+    <link rel="stylesheet" href="./assets/CSS/style.css" />
 </head>
 <body>
     <div class="container mx-auto px-4">
@@ -28,11 +28,8 @@
         </header>
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 font-mono">
-            <div class="map border-solid border-2 border-stone-900 p-2 m-2 sm:m-10 col-span-2">
-                <p>This is where the map will go</p>
-                <img src="./assets/Images/Placeholder-Map-Image.png" alt="map placeholder">
-            </div>
-            <div class="info border-solid border-2 border-stone-900 mt-4 sm:mt-10 col-span-1">
+            <div id="map" class="border-solid border-2 border-stone-900 p-2 m-2 sm:m-10 col-span-2"></div>
+            <div class="info border-solid border-2 border-stone-900 mt-4 sm:mt-10 col-span-1"> //can we remove the margin or center within div?
                 <h2 class="currentMovie text-center text-2xl sm:text-3xl p-2 mb-2">Searched Movie Title Here</h2>
                 <ul class="locations text-center">
                     <li>placeholder</li>
@@ -40,6 +37,7 @@
             </div>
         </div>
     </div>
-    <script src="/assets/JS/script.js" ></script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2VPogU8kLJ5gD4fPpZZq8DQHCEWHPS9g&callback=initMap"></script>
+    <script src="./assets/map.js" ></script>
 </body>
 </html>

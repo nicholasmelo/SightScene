@@ -254,18 +254,14 @@ function initMap() {
       position: new google.maps.LatLng(locations[i][1], locations[i][2]),
       map: map,
     });
+    /* 
+    infoWindow.addListener("click", () => {
+      infowindow.open({
+        anchor: infoWindow,
+        map: map,
+      }); */
   }
 }
-
-//calling function to generate map on page
+    
+// calling function to generate map on page
 initMap();
-
-
-/* EXAMPLE FETCH() CALL
-    fetch('https://ubahthebuilder.tech/posts/1')
-    .then(data => {
-    return data.json();
-    })
-    .then(post => {
-    console.log(post.title);
-    }); */
