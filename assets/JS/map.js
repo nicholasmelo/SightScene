@@ -227,6 +227,7 @@ function initMap() {
       },
     ],
   };
+
   // places map on page in the location designated "map" in our html based on our mapOptions
   map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
@@ -242,20 +243,22 @@ function initMap() {
 
   //loop through given locations array to generate on map
   for (var i = 0; i < locations.length; ++i) {
-    // places markers of each location iteration in array
-/*     marker = new google.maps.Marker({
+
+    /* places markers of each location iteration in array
+       marker = new google.maps.Marker({
       position: new google.maps.LatLng(locations[i][1], locations[i][2]),
       map: map,
       icon: "",
     }); */
+
     // adds location label onto markers
     infoWindow = new google.maps.InfoWindow({
       content: locations[i][0],
       position: new google.maps.LatLng(locations[i][1], locations[i][2]),
       map: map,
     });
-    /* 
-    infoWindow.addListener("click", () => {
+
+    /* infoWindow.addListener("click", () => {
       infowindow.open({
         anchor: infoWindow,
         map: map,
