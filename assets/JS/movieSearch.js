@@ -2,6 +2,7 @@ const apiKey = '5131599b8amsh5cd7960c965ca44p1c76fcjsnf65b00e1bb62';
 let movieName = '';
 const searchBar = document.querySelector(".searchBar");
 const searchBtn = document.querySelector(".searchBtn");
+let movieLo ='';
 
 function getMovie() {
   movieName = searchBar.value;
@@ -45,13 +46,18 @@ function getMovie() {
             return response.json();
           })
           .then(data => {
-            console.log('API Response 2: ', data);
+            console.log('API Location Response Data:', data);
+            
+            if (data) {
+              console.log(data.results.locations.locations[0][0]);
+              let movieLo = data.results.locations.locations[0][0];
+
+              console.log('Addresses:', movieLo);
+            }
           })
           .catch(error => {
             console.error('Fetch Error 2:', error);
           });
-      } else {
-        console.log('No Movie ID found for', movieName);
       }
     })
     .catch(error => {
