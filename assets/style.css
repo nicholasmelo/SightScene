@@ -1,0 +1,12 @@
+/* Set the size of the div element that contains the map */
+#map {
+    height: 600px; /* The height is 600 pixels */
+   /*  width is controlled by tailwinds col styling*/
+    border-radius: 20px;
+    margin: 20px;
+}
+
+#info {
+    margin: 25px;
+    border-radius: 20px;
+}
