@@ -1,5 +1,7 @@
 //initializing our map variable to refrence in our initMap function
 let map;
+let directionsService;
+let directionsRender;
 
 //function for building out map with film location data onto page *name from googleAPI url*
 function initMap() {
@@ -227,6 +229,7 @@ function initMap() {
       },
     ],
   };
+
   // places map on page in the location designated "map" in our html based on our mapOptions
   map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
@@ -242,30 +245,38 @@ function initMap() {
 
   //loop through given locations array to generate on map
   for (var i = 0; i < locations.length; ++i) {
-    // places markers of each location iteration in array
-/*     marker = new google.maps.Marker({
+
+    /* places markers of each location iteration in array
+       marker = new google.maps.Marker({
       position: new google.maps.LatLng(locations[i][1], locations[i][2]),
       map: map,
       icon: "",
     }); */
+
     // adds location label onto markers
     infoWindow = new google.maps.InfoWindow({
       content: locations[i][0],
       position: new google.maps.LatLng(locations[i][1], locations[i][2]),
       map: map,
     });
+
+    /* infoWindow.addListener("click", () => {
+      infowindow.open({
+        anchor: infoWindow,
+        map: map,
+      }); */
+
+      // once a marker is clicked on, send request for directions
+      // curl -L -X GET 'https://maps.googleapis.com/maps/api/directions/json?origin={Toronto}&destination={Montreal}&key={YOUR_API_KEY}'
   }
+
+/*   DIRECTIONS API
+  directionsService = new google.maps.DirectionsService();
+  directionsRender = new google.maps.DirectionsRender();
+  directionsRender.setMap(map); */
+
+  );
 }
-
-//calling function to generate map on page
+    
+// calling function to generate map on page
 initMap();
-
-
-/* EXAMPLE FETCH() CALL
-    fetch('https://ubahthebuilder.tech/posts/1')
-    .then(data => {
-    return data.json();
-    })
-    .then(post => {
-    console.log(post.title);
-    }); */
