@@ -1,5 +1,7 @@
 //initializing our map variable to refrence in our initMap function
 let map;
+let directionsService;
+let directionsRender;
 
 //function for building out map with film location data onto page *name from googleAPI url*
 function initMap() {
@@ -263,7 +265,17 @@ function initMap() {
         anchor: infoWindow,
         map: map,
       }); */
+
+      // once a marker is clicked on, send request for directions
+      // curl -L -X GET 'https://maps.googleapis.com/maps/api/directions/json?origin={Toronto}&destination={Montreal}&key={YOUR_API_KEY}'
   }
+
+/*   DIRECTIONS API
+  directionsService = new google.maps.DirectionsService();
+  directionsRender = new google.maps.DirectionsRender();
+  directionsRender.setMap(map); */
+
+  );
 }
     
 // calling function to generate map on page
