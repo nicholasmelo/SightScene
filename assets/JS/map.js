@@ -1,7 +1,7 @@
 //initializing our map variable to refrence in our initMap function
 let map;
-let directionsService;
-let directionsRender;
+//let directionsService;
+//let directionsRender;
 
 //function for building out map with film location data onto page *name from googleAPI url*
 function initMap() {
@@ -275,7 +275,7 @@ function initMap() {
   directionsRender = new google.maps.DirectionsRender();
   directionsRender.setMap(map); */
 
-  );
+  //);
 }
     
 // calling function to generate map on page
