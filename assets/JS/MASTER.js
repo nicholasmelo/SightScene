@@ -28,7 +28,14 @@ function getMovie() {
       console.log('API Response Data:', data);
       if (data && Array.isArray(data.results) && data.results.length >= 0) {
         let movieID = data.results[0].imdb_id;
+        let movieTitle = data.results[0].title; //Gets movie title info from the fetch
         console.log('MovieID: ', movieID);
+        console.log('Movie Name: ', movieTitle);
+
+        let currentMovie = document.querySelector(".currentMovie");
+        currentMovie.textContent = movieTitle; //Sets the searched movies title to the currentMovie H2 in the HTML to display to users what movie they have searched.
+
+
 
         const pUrl = `https://moviesminidatabase.p.rapidapi.com/movie/id/${movieID}/production_locations/`;
 
