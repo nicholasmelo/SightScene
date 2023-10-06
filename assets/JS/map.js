@@ -1,7 +1,9 @@
 //initializing our map variable to refrence in our initMap function
 let map;
-let directionsRenderer = new google.maps.DirectionsRenderer();
 let directionsService = new google.maps.DirectionsService();
+let directionsRenderer;
+// Create a single array to hold all infoWindows
+let infoWindows = [];
 
 //function for building out map with film location data onto page *name from googleAPI url*
 function initMap() {
@@ -232,7 +234,7 @@ function initMap() {
 
   // places map on page in the location designated "map" in our html based on our mapOptions
   map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
+  directionsRenderer = new google.maps.DirectionsRenderer();
   // Add the directionsRenderer to the map
   directionsRenderer.setMap(map);
 
@@ -245,30 +247,48 @@ function initMap() {
     ["Tracy Aviary", 40.74258, -111.87489],
     ["Salt Lake City", 40.7608, -111.8911],
   ];
-  //creates infoWindows at locations in array
+
   for (var i = 0; i < locations.length; ++i) {
-    let infoWindows = [];
     // Create a link element
     var link = document.createElement("a");
-    link.href = "";
+    link.href = "#";
     link.textContent = "GET DIRECTIONS";
 
-    // Add a click event listener to the link
-    link.addEventListener("click", function (event) {
-      event.preventDefault();
-      GetDirections(locations[i][1], locations[i][2]);
-      console.log("link was clicked");
-    });
+    // Add a click event listener to the link using an IIFE
+    (function (index) {
+      link.addEventListener("click", function (event) {
+        event.preventDefault();
+        GetDirections(locations[index][1], locations[index][2]);
+        console.log("link was clicked for location " + index);
+      });
+    })(i);
 
     // Create the InfoWindow with the location label and the link
-    infoWindows = new google.maps.InfoWindow({
-      content: locations[i][0] + link.outerHTML,
+    var infoWindow = new google.maps.InfoWindow({
+      content: locations[i][0] + "<br>" + link.outerHTML,
+    });
+
+    // Create a marker for the location
+    var marker = new google.maps.Marker({
       position: new google.maps.LatLng(locations[i][1], locations[i][2]),
       map: map,
     });
+
+    // Associate the marker with the infoWindow
+    marker.addListener("click", function () {
+      // Close any open infoWindows
+      infoWindows.forEach(function (iw) {
+        iw.close();
+      });
+
+      // Open the current infoWindow
+      infoWindow.open(marker.map, marker);
+    });
+
+    // Push the current InfoWindow to the array
+    infoWindows.push(infoWindow);
   }
 }
-
 function GetDirections(destLat, destLng) {
   var origin = { lat: 40.7608, lng: -111.8911 };
 
@@ -286,33 +306,8 @@ function GetDirections(destLat, destLng) {
       console.error("Directions request failed due to " + status);
     }
   });
-  directionsRenderer.setMap(map);
   directionsRenderer.setPanel(document.getElementById("info"));
 }
 
 // calling function to generate map on page
 initMap();
-
-//----------end of code---------//
-//PREVIOUS ATTEMPT TO GET DIRECTIONS
-
-/* //Function to get directions by making fetch call
-function GetDirections(destLat, destLng) {
-  //request directions from google API
-  var origin = { lat: 40.7608, lng: -111.8911 };
-  var destination = { lat: 40.984444, lng: -111.895 };
-  var apiKey = "AIzaSyD2VPogU8kLJ5gD4fPpZZq8DQHCEWHPS9g";
-
-  var apiUrl = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin.lat},${origin.lng}&destination=${destination.lat},${destination.lng}&key=${apiKey}`;
-
-  fetch(apiUrl)
-    .then((response) => response.json())
-    .then((data) => {
-      // Process the JSON response here
-      console.log(data);
-    })
-    .catch((error) => {
-      // Handle any errors that occur during the request
-      console.error("Error:", error);
-    });
-}*/
