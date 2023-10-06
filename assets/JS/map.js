@@ -248,27 +248,59 @@ function initMap() {
   for (var i = 0; i < locations.length; ++i) {
     // adds location label onto markers
     InfoWindow = new google.maps.InfoWindow({
-      content: locations[i][0] + '<a href=" ">     GET DIRECTIONS</a>',
+      content: locations[i][0] + '<p<a href=" ">     GET DIRECTIONS</a>></p>',
       position: new google.maps.LatLng(locations[i][1], locations[i][2]),
       map: map,
     });
   }
 }
 
+function GetDirections() {
+  //request directions from google API
+  var origin = { latitude: 40.7608, longitude: -111.8911 };
+  var destination = { latitude: 40.984444, longitude: -111.895 };
+  var apiKey = AIzaSyD2VPogU8kLJ5gD4fPpZZq8DQHCEWHPS9g;
+
+  var apiUrl = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin.latitude},${origin.longitude}&destination=${destination.latitude},${destination.longitude}&key=${apiKey}`;
+
+  fetch(apiUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      // Process the JSON response here
+      console.log(data);
+    })
+    .catch((error) => {
+      // Handle any errors that occur during the request
+      console.error("Error:", error);
+    });
+  }
+  // calling function to generate map on page
+  initMap();
+
+  //trying to make an element so i can add an event listener to the link "click"
+  var element = document.getElementById("directions");
+  var newElement = document.createElement("a");
+  element.appendChild(newElement);
+
+  //eventListener for the link to call function GetDirections
+  a.addListener("click", function(event) {
+    GetDirections();
+    event.preventDefault();
+    console.log("link was clicked");
+  });
+}
+
+//----------end of code---------
+
 directionsRenderer.setMap(map);
 directionsRenderer.setPanel(document.getElementById("info"));
-
-/* https://maps.googleapis.com/maps/api/directions/json
-  ?destination=startLocation
-  &origin=endLocation
-  &key=AIzaSyD2VPogU8kLJ5gD4fPpZZq8DQHCEWHPS9g */
 
 ///NEW FUNCTION TO GET ROUTE//
 function calculateAndDisplayRoute(directionsService, directionsRenderer) {
   //start will be current location
-  var startLocation = (40.7608, -111.8911); //.value
+  var startLocation = { latitude: 43.653225, longitude: -79.383186 };
   //end will be a location from map---> coordinates maybe?
-  var endLocation = (40.984444, -111.895); //.value
+  var endLocation = { latitude: 45.501689, longitude: -73.567256 };
 
   directionsService
     .route({
@@ -285,30 +317,3 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     })
     .catch((e) => window.alert("Directions request failed due to " + status));
 }
-
-// calling function to generate map on page
-initMap();
-
-infoWindow.addListener("click", () => {
-  calculateAndDisplayRoute(directionsService, directionsRenderer);
-});
-
-/*   //start will be current location
-  var startLocation = (40.7608, -111.8911); //.value
-  //end will be a location from map---> coordinates maybe?
-  var endLocation = (40.984444, -111.895); //.value
-
-  var request = {
-    origin: startLocation,
-    destination: endLocation,
-    travelMode: "DRIVING",
-  };
-  directionsService.route(request, function (result, status) {
-    if (status == "OK") {
-      directionsRenderer.setDirections(result);
-    }
-  });
-
-  infoWindow.addListener("click", () => {
-    calculateAndDisplayRoute(directionsService, directionsRenderer);
-  }); */
