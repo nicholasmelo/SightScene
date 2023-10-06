@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5BEtfrs1m7xukhEaEha-M-9rYQnlXjMw"></script>
     <style type="text/tailwindcss">
       @layer utilities {
         .content-auto {
@@ -22,11 +23,11 @@
       <h1 class="text-center p-3 text-lg font-bold sm:mt-6 sm:p-5 sm:text-2xl md:text-4xl lg:text-5xl lg:p-7">Sight Scene</h1>
       <div class="flex flex-col items-center space-y-2">
         <input class="searchBar text-center w-1/4 md:w-1/3 border-2 border-solid border-stone-900 text-sm md:max-w-md md:text-base" type="search" placeholder="Movie Title" />
-        <button class="searchBtn text-center w-1/6 border-2 border-solid border-stone-900 px-2 text-xs md:text-base">Search</button>
+        <button onClick="pageSwitch()" class="searchBtn text-center w-1/6 border-2 border-solid border-stone-900 px-2 text-xs md:text-base">Search</button>
       </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="./assets/JS/script.js"></script>
+    <script src="./assets/JS/MASTER.js"></script>
   </body>
 </html>

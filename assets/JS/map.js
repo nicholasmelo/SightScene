@@ -293,9 +293,6 @@ infoWindow.addListener("click", () => {
   calculateAndDisplayRoute(directionsService, directionsRenderer);
 });
 
-
-
-
 /*   //start will be current location
   var startLocation = (40.7608, -111.8911); //.value
   //end will be a location from map---> coordinates maybe?
