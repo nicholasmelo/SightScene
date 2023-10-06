@@ -89,9 +89,6 @@ async function initMap() {
     directionsLink.addEventListener("click", function (event) {
       console.log("click on directions link");
 
-      // console.log(event);
-      console.log(event.target);
-
       //GET CURRENT LOCATION
       let originLocationLat = 0;
       let originLocationLng = 0;
@@ -122,7 +119,7 @@ async function initMap() {
       infoWindow.open(marker.map, marker);
       console.log("click on marker");
 
-      // Add the directionsRenderer to the map
+      // Add the directionsRenderer to the map---------> THROWING AN ISSUE HERE!!!!!!!
       directionsRenderer.setMap(map);
 
       //calculate route to selected location
