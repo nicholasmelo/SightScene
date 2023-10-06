@@ -1,7 +1,8 @@
 //initializing our map variable to refrence in our initMap function
 let map;
-let directionsService;
-let directionsRender;
+let directionsRenderer = new google.maps.DirectionsRenderer();
+let directionsService = new google.maps.DirectionsService();
+let infoWindow;
 
 //function for building out map with film location data onto page *name from googleAPI url*
 function initMap() {
@@ -238,45 +239,57 @@ function initMap() {
   var locations = [
     ["Smith Ballpark", 40.7377753822, -111.889054777],
     ["Lagoon", 40.984444, -111.895],
-    ["George S. Eccles Dinosaur Park", 41.23773, -111.93790],
+    ["George S. Eccles Dinosaur Park", 41.23773, -111.9379],
     ["Tracy Aviary", 40.74258, -111.87489],
     ["Salt Lake City", 40.7608, -111.8911],
   ];
 
   //loop through given locations array to generate on map
   for (var i = 0; i < locations.length; ++i) {
-
-    /* places markers of each location iteration in array
-       marker = new google.maps.Marker({
-      position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-      map: map,
-      icon: "",
-    }); */
-
     // adds location label onto markers
-    infoWindow = new google.maps.InfoWindow({
-      content: locations[i][0],
+    InfoWindow = new google.maps.InfoWindow({
+      content: locations[i][0] + '<a href=" ">     GET DIRECTIONS</a>',
       position: new google.maps.LatLng(locations[i][1], locations[i][2]),
       map: map,
     });
-
-    /* infoWindow.addListener("click", () => {
-      infowindow.open({
-        anchor: infoWindow,
-        map: map,
-      }); */
-
-      // once a marker is clicked on, send request for directions
-      // curl -L -X GET 'https://maps.googleapis.com/maps/api/directions/json?origin={Toronto}&destination={Montreal}&key={YOUR_API_KEY}'
   }
-
-/*   DIRECTIONS API
-  directionsService = new google.maps.DirectionsService();
-  directionsRender = new google.maps.DirectionsRender();
-  directionsRender.setMap(map); */
-
-  );
 }
-    
+
+directionsRenderer.setMap(map);
+directionsRenderer.setPanel(document.getElementById("info"));
+
+function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+  //start will be current location
+  var startLocation = (40.7608, -111.8911);
+  //end will be a location from map---> coordinates maybe?
+  var endLocation = (40.984444, -111.895);
+
+  directionsService
+    .route({
+      origin: startLocation,
+      destination: endLocation,
+      travelMode: google.maps.TravelMode.DRIVING,
+    })
+    .then((response) => {
+      directionsRenderer.setDirections(response);
+    })
+    .catch((e) => window.alert("Directions request failed due to " + status));
+
+  infoWindow.addListener("click", () => {
+    calculateAndDisplayRoute(directionsService, directionsRenderer);
+  });
+}
+
 // calling function to generate map on page
 initMap();
+
+/* // Add click event listener to each InfoWindow
+google.maps.event.addListener(infoWindow, "click", function () {
+  calculateAndDisplayRoute(directionsService, directionsRenderer);
+}); */
+
+/* infoWindows.forEach(function (infoWindow) {
+  infoWindow.addListener("click", function () {
+    calculateAndDisplayRoute(directionsService, directionsRenderer);
+  });
+}); */
