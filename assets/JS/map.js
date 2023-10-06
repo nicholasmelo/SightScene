@@ -1,16 +1,27 @@
 //initializing our map variable to refrence in our initMap function
 let map;
-let directionsService = new google.maps.DirectionsService();
+let directionsService;
 let directionsRenderer;
-// Create a single array to hold all infoWindows
+
+directionsService = new google.maps.DirectionsService();
+directionsRenderer = new google.maps.DirectionsRenderer();
+
+// Create a single array to hold all markers and infoWindows
 let markers = [];
+let infoWindows = [];
 
 //function for building out map with film location data onto page *name from googleAPI url*
-function initMap() {
+async function initMap() {
+  // Request needed libraries.
+  const { Map } = await google.maps.importLibrary("maps");
+  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+  const { PinElement } = await google.maps.importLibrary("marker");
+
   var mapOptions = {
     zoom: 9,
     //map renders centered on Salt Lake City, Utah
     center: { lat: 40.76078, lng: -111.89105 },
+    mapId: "SightScene",
     //customized map display colors
     styles: [
       {
@@ -233,11 +244,8 @@ function initMap() {
   };
 
   // places map on page in the location designated "map" in our html based on our mapOptions
-  map = new google.maps.Map(document.getElementById("map"), mapOptions);
-  directionsRenderer = new google.maps.DirectionsRenderer();
-  // Add the directionsRenderer to the map
-  directionsRenderer.setMap(map);
-
+  map = new /*google.maps.*/ Map(document.getElementById("map"), mapOptions);
+ 
   //replace with data from miniMoviesAPI *DD Coordinate Form*
   //e.g. The Sandlot Movie
   var locations = [
@@ -264,7 +272,8 @@ function initMap() {
   ];
 
   // Create an info window to share between markers.
-  const infoWindow = new InfoWindow();
+  var infoWindow = new google.maps.InfoWindow();
+
   // Create the markers.
   // tourStops.forEach(({ position, title, }, i) => {
   for (let i = 0; i < locations.length; i++) {
@@ -274,8 +283,8 @@ function initMap() {
     let position = locations[i].position;
     let title = locations[i].title;
     const marker = new AdvancedMarkerElement({
-      position,
-      map,
+      position: position,
+      map: map,
       title: `${i + 1}. ${title}`,
       content: pin.element,
     });
@@ -331,6 +340,9 @@ function initMap() {
       infoWindow.open(marker.map, marker);
       console.log("click on marker");
 
+      // Add the directionsRenderer to the map
+      directionsRenderer.setMap(map);
+
       //calculate route to selected location
       function GetDirections(destLat, destLng) {
         var origin = { lat: 40.7608, lng: -111.8911 };
@@ -358,9 +370,6 @@ function initMap() {
   }
 }
 
-// calling function to generate map on page
-initMap();
-
 //-------------------------------------------------------------------------------------//
 // Create the InfoWindow with the location label and the link
 /*   var infoWindow = new google.maps.InfoWindow({
@@ -387,7 +396,4 @@ initMap();
     var marker = new google.maps.Marker({
       position: new google.maps.LatLng(locations[i][1], locations[i][2]),
       map: map,
-    });
-
-  }
-}
+    });*/
