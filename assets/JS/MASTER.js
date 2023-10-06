@@ -35,8 +35,6 @@ function getMovie() {
         let currentMovie = document.querySelector(".currentMovie");
         currentMovie.textContent = movieTitle; //Sets the searched movies title to the currentMovie H2 in the HTML to display to users what movie they have searched.
 
-
-
         const pUrl = `https://moviesminidatabase.p.rapidapi.com/movie/id/${movieID}/production_locations/`;
 
         fetch(pUrl, {
