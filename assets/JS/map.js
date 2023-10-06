@@ -258,38 +258,60 @@ function initMap() {
 directionsRenderer.setMap(map);
 directionsRenderer.setPanel(document.getElementById("info"));
 
+/* https://maps.googleapis.com/maps/api/directions/json
+  ?destination=startLocation
+  &origin=endLocation
+  &key=AIzaSyD2VPogU8kLJ5gD4fPpZZq8DQHCEWHPS9g */
+
+///NEW FUNCTION TO GET ROUTE//
 function calculateAndDisplayRoute(directionsService, directionsRenderer) {
   //start will be current location
-  var startLocation = (40.7608, -111.8911);
+  var startLocation = (40.7608, -111.8911); //.value
   //end will be a location from map---> coordinates maybe?
-  var endLocation = (40.984444, -111.895);
+  var endLocation = (40.984444, -111.895); //.value
 
   directionsService
     .route({
-      origin: startLocation,
-      destination: endLocation,
+      origin: {
+        query: startLocation,
+      },
+      destination: {
+        query: endLocation,
+      },
       travelMode: google.maps.TravelMode.DRIVING,
     })
     .then((response) => {
       directionsRenderer.setDirections(response);
     })
     .catch((e) => window.alert("Directions request failed due to " + status));
-
-  infoWindow.addListener("click", () => {
-    calculateAndDisplayRoute(directionsService, directionsRenderer);
-  });
 }
 
 // calling function to generate map on page
 initMap();
 
-/* // Add click event listener to each InfoWindow
-google.maps.event.addListener(infoWindow, "click", function () {
+infoWindow.addListener("click", () => {
   calculateAndDisplayRoute(directionsService, directionsRenderer);
-}); */
+});
 
-/* infoWindows.forEach(function (infoWindow) {
-  infoWindow.addListener("click", function () {
-    calculateAndDisplayRoute(directionsService, directionsRenderer);
+
+
+
+/*   //start will be current location
+  var startLocation = (40.7608, -111.8911); //.value
+  //end will be a location from map---> coordinates maybe?
+  var endLocation = (40.984444, -111.895); //.value
+
+  var request = {
+    origin: startLocation,
+    destination: endLocation,
+    travelMode: "DRIVING",
+  };
+  directionsService.route(request, function (result, status) {
+    if (status == "OK") {
+      directionsRenderer.setDirections(result);
+    }
   });
-}); */
+
+  infoWindow.addListener("click", () => {
+    calculateAndDisplayRoute(directionsService, directionsRenderer);
+  }); */
