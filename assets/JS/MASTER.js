@@ -85,12 +85,9 @@ for (var i = 0; i < addresses.length; i++) {
     });
 }
 
+
 searchBtn.addEventListener('click', getMovie);
 
-
-
-
-
-
-
-
+function pageSwitch() {
+    window.location.href = "results.html"
+}
