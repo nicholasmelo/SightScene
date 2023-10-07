@@ -3,9 +3,6 @@ let map;
 let directionsService;
 let directionsRenderer;
 
-directionsService = new google.maps.DirectionsService();
-directionsRenderer = new google.maps.DirectionsRenderer();
-
 // Create a single array to hold all markers and infoWindows
 let markers = [];
 let infoWindows = [];
@@ -17,17 +14,20 @@ async function initMap() {
   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
   const { PinElement } = await google.maps.importLibrary("marker");
 
+  directionsService = new google.maps.DirectionsService();
+  directionsRenderer = new google.maps.DirectionsRenderer();
+
   var mapOptions = {
     zoom: 9,
     //map renders centered on Salt Lake City, Utah
     center: { lat: 40.76078, lng: -111.89105 },
     //customized map display colors at https://console.cloud.google.com/google/maps-apis/studio/styles/new/edit?project=my-project-1-400500
-   mapId: "78bd156d9d1c765e",
+    mapId: "78bd156d9d1c765e",
   };
 
   // places map on page in the location designated "map" in our html based on our mapOptions
   map = new /*google.maps.*/ Map(document.getElementById("map"), mapOptions);
- 
+
   //replace with data from miniMoviesAPI *DD Coordinate Form*
   //e.g. The Sandlot Movie
   var locations = [
@@ -120,7 +120,7 @@ async function initMap() {
       console.log("click on marker");
 
       // Add the directionsRenderer to the map---------> THROWING AN ISSUE HERE!!!!!!!
-      directionsRenderer.setMap(map);
+      //directionsRenderer.setMap(map);
 
       //calculate route to selected location
       function GetDirections(destLat, destLng) {
@@ -128,8 +128,10 @@ async function initMap() {
         //var destination = { lat: 41.23773, lng: -111.9379 };
 
         var request = {
-          origin: new google.maps.LatLng(origin.lat, origin.lng),
-          destination: new google.maps.LatLng(destLat, destLng),
+          //origin: new google.maps.LatLng(origin.lat, origin.lng),
+          //destination: new google.maps.LatLng(destLat, destLng),
+          origin: "los angeles, ca",
+          destination: "sacramento, ca",
           travelMode: "DRIVING", // or 'WALKING', 'BICYCLING', etc.
         };
 
