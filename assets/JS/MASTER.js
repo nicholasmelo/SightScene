@@ -4,6 +4,7 @@ const searchBar = document.querySelector(".searchBar");
 const searchBtn = document.querySelector(".searchBtn");
 let movieLo ='';
 
+
 function getMovie() {
   movieName = searchBar.value;
 
@@ -72,6 +73,30 @@ for (var i = 0; i < addresses.length; i++) {
         var latitude = results[0].geometry.location.lat();
         var longitude = results[0].geometry.location.lng();
 
+        var locationDetails = [
+            address,
+            latitude,
+            (-longitude)
+          ];
+      console.log("Location Details Array:", locationDetails);
+    
+
+  //loop through given locations array to generate on map
+  for (var i = 0; i < locationDetails.length; ++i) {
+    // adds location label onto markers
+    console.log("length: ", locationDetails.length);
+    console.log("i: ", i);
+    console.log("details: ", locationDetails[i]);
+    console.log("location details: ", locationDetails[1], "and second: ", locationDetails[2]);
+    InfoWindow = new google.maps.InfoWindow({
+      content: locationDetails[i],
+      position: new google.maps.LatLng(locationDetails[1], locationDetails[2]),
+      //position: new google.maps.LatLng(40.76078, -111.89105),
+      map: map,
+    });
+    console.log("info window:", infoWindow);
+  }
+
         // Display the coordinates on the web page.
         console.log("for "+ address + " the corresponding latitude is " + latitude + " and the corresponding longitude is " + longitude + ".");
       } else {
@@ -92,7 +117,3 @@ for (var i = 0; i < addresses.length; i++) {
 
 
 searchBtn.addEventListener('click', getMovie);
-
-function pageSwitch() {
-    window.location.href = "results.html"
-}
