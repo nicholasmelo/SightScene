@@ -124,14 +124,12 @@ async function initMap() {
 
       //calculate route to selected location
       function GetDirections(destLat, destLng) {
-        var origin = { lat: 40.7608, lng: -111.8911 };
-        //var destination = { lat: 41.23773, lng: -111.9379 };
+        var origin = "los angeles, ca";
+        var destination = "sacramento, ca";
 
         var request = {
-          //origin: new google.maps.LatLng(origin.lat, origin.lng),
-          //destination: new google.maps.LatLng(destLat, destLng),
-          origin: "los angeles, ca",
-          destination: "sacramento, ca",
+          origin: origin,
+          destination: destination,
           travelMode: "DRIVING", // or 'WALKING', 'BICYCLING', etc.
         };
 
