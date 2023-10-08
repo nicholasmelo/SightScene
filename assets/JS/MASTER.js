@@ -3,6 +3,50 @@ let movieName = '';
 const searchBar = document.querySelector(".searchBar");
 const searchBtn = document.querySelector(".searchBtn");
 let movieLo ='';
+const nModal = document.getElementById('mNetwork');
+const tModal = document.getElementById('mTitle')
+
+function openNModal() {
+  nModal.classList.remove('hidden');
+};
+
+function closeNModal() {
+  nModal.classList.add('hidden');
+};
+
+nModal.addEventListener('click', (event) => {
+  if (event.target === nModal) {
+    closeNModal();
+  }
+});
+
+function openTModal() {
+  modal.classList.remove('hidden');
+};
+
+function closeTModal() {
+  modal.classList.add('hidden');
+};
+
+modal.addEventListener('click', (event) => {
+  if (event.target === modal) {
+    closeTModal();
+  }
+});
+
+function openLModal() {
+  modal.classList.remove('hidden');
+};
+
+function closeLModal() {
+  modal.classList.add('hidden');
+};
+
+modal.addEventListener('click', (event) => {
+  if (event.target === modal) {
+    closeLModal();
+  }
+});
 
 
 function getMovie() {
@@ -21,6 +65,7 @@ function getMovie() {
   })
     .then(response => {
       if (!response.ok) {
+        openNModal();
         throw new Error('Network response was not ok');
       }
       return response.json();
