@@ -9,6 +9,10 @@ const nModal = document.getElementById('mNetwork');
 const tModal = document.getElementById('mTitle');
 const lModal = document.getElementById('mLocation');
 
+//Local Storage declarations
+let savedLocationDetails = [];
+
+
 //Modal function for Network Modal
 function openNModal() {
   nModal.classList.remove('hidden');
@@ -26,14 +30,14 @@ nModal.addEventListener('click', (event) => {
 
 //Modal function for Title modal
 function openTModal() {
-  tmodal.classList.remove('hidden');
+  tModal.classList.remove('hidden');
 };
 
 function closeTModal() {
-  tmodal.classList.add('hidden');
+  tModal.classList.add('hidden');
 };
 
-tmodal.addEventListener('click', (event) => {
+tModal.addEventListener('click', (event) => {
   if (event.target === tmodal) {
     closeTModal();
   }
@@ -175,7 +179,24 @@ function getMovie() {
   .catch(error => {
     console.error('Fetch Error 1:', error);
   });
-}
+};
 
+function previousL(savedLocationDetails){
+  for (var i = 0; i < savedLocationDetails.length; i++){
+    //need to create code to add the savedLocationsDetails to the map here
+  };
+};
 
+previousBtn.addEventListener('click', function () {
+
+  let savedSearchData = localStorage.getItem('lastSearchData')
+
+  if (savedSearchData) {
+    const searchData = JSON.parse(savedSearchData);
+    searchBar.value = searchData.savedMovie; // Populate the search bar with the saved movie title
+
+    // Use the location information to populate the map
+    populateMapWithLocationData(searchData.savedLocation);
+  }
+})
 searchBtn.addEventListener('click', getMovie);
