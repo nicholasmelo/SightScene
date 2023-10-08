@@ -4,8 +4,10 @@ const searchBar = document.querySelector(".searchBar");
 const searchBtn = document.querySelector(".searchBtn");
 let movieLo ='';
 const nModal = document.getElementById('mNetwork');
-const tModal = document.getElementById('mTitle')
+const tModal = document.getElementById('mTitle');
+const lModal = document.getElementById('mLocation');
 
+//Modal function for Network Modal
 function openNModal() {
   nModal.classList.remove('hidden');
 };
@@ -20,35 +22,38 @@ nModal.addEventListener('click', (event) => {
   }
 });
 
+//Modal function for Title modal
 function openTModal() {
-  modal.classList.remove('hidden');
+  tmodal.classList.remove('hidden');
 };
 
 function closeTModal() {
-  modal.classList.add('hidden');
+  tmodal.classList.add('hidden');
 };
 
-modal.addEventListener('click', (event) => {
-  if (event.target === modal) {
+tmodal.addEventListener('click', (event) => {
+  if (event.target === tmodal) {
     closeTModal();
   }
 });
 
+//Modal function for Location Modal
 function openLModal() {
-  modal.classList.remove('hidden');
+  lModal.classList.remove('hidden');
 };
 
 function closeLModal() {
-  modal.classList.add('hidden');
+  lModal.classList.add('hidden');
 };
 
-modal.addEventListener('click', (event) => {
-  if (event.target === modal) {
+lModal.addEventListener('click', (event) => {
+  if (event.target === lModal) {
     closeLModal();
   }
 });
 
 
+//Function that handles search function
 function getMovie() {
   movieName = searchBar.value;
 
@@ -56,6 +61,7 @@ function getMovie() {
 
   console.log('Request URL:', url); // Log the request URL
 
+  //First Fetch request for MiniMovies API to get Movie ID
   fetch(url, {
     method: 'GET',
     headers: {
@@ -83,6 +89,7 @@ function getMovie() {
 
         const pUrl = `https://moviesminidatabase.p.rapidapi.com/movie/id/${movieID}/production_locations/`;
 
+        //Second Fetch request to use mini movies ID to request location info
         fetch(pUrl, {
           method: 'GET',
           headers: {
@@ -104,7 +111,7 @@ function getMovie() {
               let movieLo = data.results.locations.locations[0][0];
 
               console.log('Addresses:', movieLo);
-              var addresses = [movieLo];
+              var addresses = [movieLo]; //Sets the addresses array with the MovieLo info grabbed from the mini movies api
               var geocoder = new google.maps.Geocoder();
 
 // Iterate over the array and geocode each address.
@@ -151,8 +158,12 @@ for (var i = 0; i < addresses.length; i++) {
     });
   })(addresses[i]);
 }
+            } else {
+              openTModal();
             }
           })
+      } else {
+        openLModal();
       }
     })
     .catch(error => {
