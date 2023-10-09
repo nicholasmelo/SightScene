@@ -162,12 +162,13 @@ function getMovie() {
               });
             })(addresses[i]);
           } 
-          
+          //Setting local storage info here.
           const searchData = {
             savedMovie: movieTitle,
             savedLocation: locationbar
           }
           localStorage.setItem('lastSearchData', JSON.stringify(searchData));
+          
         } else {
           openTModal();
         }
@@ -180,7 +181,7 @@ function getMovie() {
     console.error('Fetch Error 1:', error);
   });
 };
-
+//Code to recall local storage information and display it on the map. incomplete
 function previousL(savedLocationDetails){
   for (var i = 0; i < savedLocationDetails.length; i++){
     //need to create code to add the savedLocationsDetails to the map here
