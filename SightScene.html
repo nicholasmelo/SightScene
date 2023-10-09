@@ -15,7 +15,7 @@
         }
       }
     </style>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZEEPX3Eb0zB3l8WLyYimjR35Y-38gr50"></script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2VPogU8kLJ5gD4fPpZZq8DQHCEWHPS9g&callback=initMap"></script>
     <link rel="stylesheet" href="./assets/CSS/style.css" />
 </head>
 
@@ -33,10 +33,7 @@
         <div id="results" class="grid grid-cols-1 sm:grid-cols-3 gap-2 font-mono">
             <div id="map" class="border-solid border-2 border-stone-900 sm:m-10 col-span-2"></div>
             <div id="info" class="border-solid border-2 border-stone-900 mt-4 sm:mt-10 col-span-1">
-                <h2 class="currentMovie text-center text-2xl sm:text-3xl p-2 mb-2"></h2>
-                <ul class="locations text-center">
-                    <li>placeholder</li>
-                </ul>
+                <h2 id ="directions" class="currentMovie text-center text-2xl sm:text-3xl p-2 mb-2"></h2>
             </div>
         </div>
     </div>
@@ -135,6 +132,7 @@
     <!--End Modal-->
     <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRu1c_EcF2qZI7eF6oqbWp3UDvMJC5_3U&callback=initMap"></script>
     <script src="./assets/JS/map.js"></script>
+    <script src="./assets/JS/directions.js"></script>
     <script src="./assets/JS/MASTER.js"></script>
     <!--<script src="./assets/JS/MTest.js"></script>-->
 </body>
