@@ -150,6 +150,7 @@ previousBtn.addEventListener('click', function () {
 
   let savedSearchData = localStorage.getItem('lastSearchData')
 
+<<<<<<< HEAD
         var locationDetails = [
             address,
             latitude,
@@ -185,6 +186,8 @@ previousBtn.addEventListener('click', function () {
 
   let savedSearchData = localStorage.getItem('lastSearchData')
 
+=======
+>>>>>>> 8b755433f12a2c22af6499fe3717f624d89f371a
   if (savedSearchData) {
     const searchData = JSON.parse(savedSearchData);
     searchBar.value = searchData.savedMovie; // Populate the search bar with the saved movie title
@@ -194,3 +197,4 @@ previousBtn.addEventListener('click', function () {
   }
 })
 searchBtn.addEventListener('click', getMovie);
+searchBtn.addEventListener('click', console.log('Button Clii'))
