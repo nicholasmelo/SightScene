@@ -81,7 +81,7 @@ for (var i = 0; i < addresses.length; i++) {
       console.log("Location Details Array:", locationDetails);
     
 
-  //loop through given locations array to generate on map
+/*   //loop through given locations array to generate on map
   for (var i = 0; i < locationDetails.length; ++i) {
     // adds location label onto markers
     console.log("length: ", locationDetails.length);
@@ -95,9 +95,9 @@ for (var i = 0; i < addresses.length; i++) {
       map: map,
     });
     console.log("info window:", infoWindow);
-  }
+  } */
 
-        // Display the coordinates on the web page.
+/*         // Display the coordinates on the web page.
         console.log("for "+ address + " the corresponding latitude is " + latitude + " and the corresponding longitude is " + longitude + ".");
       } else {
         // Handle the error.
@@ -112,7 +112,7 @@ for (var i = 0; i < addresses.length; i++) {
     })
     .catch(error => {
       console.error('Fetch Error 1:', error);
-    });
+    }); */
 }
 
 
