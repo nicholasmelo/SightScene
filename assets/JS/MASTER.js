@@ -167,34 +167,30 @@ function getMovie() {
             savedMovie: movieTitle,
             savedLocation: locationbar
           }
-        })
-          .then(response => {
-            if (!response.ok) {
-              throw new Error('Network response was not ok');
-            }
-            return response.json();
-          })
-          .then(data => {
-            console.log('API Location Response Data:', data);
-            
-            if (data) {
-              console.log(data.results.locations.locations[0][0]);
-              let movieLo = data.results.locations.locations[0][0];
+          localStorage.setItem('lastSearchData', JSON.stringify(searchData));
+          
+        } else {
+          openTModal();
+        }
+      }) 
+    } else {
+      openLModal();
+    }
+  })
+  .catch(error => {
+    console.error('Fetch Error 1:', error);
+  });
+};
+//Code to recall local storage information and display it on the map. incomplete
+function previousL(savedLocationDetails){
+  for (var i = 0; i < savedLocationDetails.length; i++){
+    //need to create code to add the savedLocationsDetails to the map here
+  };
+};
 
-              console.log('Addresses:', movieLo);
-              var addresses = [movieLo];
-              var geocoder = new google.maps.Geocoder();
+previousBtn.addEventListener('click', function () {
 
-// Iterate over the array and geocode each address.
-for (var i = 0; i < addresses.length; i++) {
-  // Capture the address variable in a closure.
-  (function(address) {
-    // Geocode the address.
-    geocoder.geocode({ address: address }, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        // Get the latitude and longitude of the address.
-        var latitude = results[0].geometry.location.lat();
-        var longitude = results[0].geometry.location.lng();
+  let savedSearchData = localStorage.getItem('lastSearchData')
 
         var locationDetails = [
             address,
