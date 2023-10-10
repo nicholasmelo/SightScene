@@ -53,7 +53,7 @@ async function initMap() {
 
   //replace with data from miniMoviesAPI *DD Coordinate Form*
   //e.g. The Sandlot Movie
-  var locations = [
+/*   var locations = [
     {
       position: { lat: 40.7377753822, lng: -111.889054777 },
       title: "Smith Ballpark",
@@ -74,7 +74,9 @@ async function initMap() {
       position: { lat: 40.7608, lng: -111.8911 },
       title: "Salt Lake City",
     },
-  ];
+  ]; */
+
+  var locations = [movieLo];
 
   // Create an info window to share between markers.
   var infoWindow = new google.maps.InfoWindow();
