@@ -2,6 +2,7 @@ const apiKey = '5131599b8amsh5cd7960c965ca44p1c76fcjsnf65b00e1bb62';
 let movieName = '';
 const searchBar = document.querySelector(".searchBar");
 const searchBtn = document.querySelector(".searchBtn");
+const goBack = document.querySelector(".goBack");
 let movieLo ='';
 
 //Brings modals into JS
