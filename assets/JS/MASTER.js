@@ -7,7 +7,7 @@ let movieLo ='';
 
 
 //Function that handles search function
-function getMovie() {
+function getMovie() 
   movieName = searchBar.value;
 
 function addMovieLocationMarker(location, title) {
@@ -106,44 +106,6 @@ previousBtn.addEventListener('click', function () {
 
   let savedSearchData = localStorage.getItem('lastSearchData')
 
-<<<<<<< HEAD
-        var locationDetails = [
-            address,
-            latitude,
-            (-longitude)
-          ];
-      console.log("Location Details Array:", locationDetails);
-}
-
-          localStorage.setItem('lastSearchData', JSON.stringify(searchData));
-          
-        } 
-        else {
-          openTModal();
-        }
-      }) 
-    } 
-    else {
-      openLModal();
-    }
-  })
-  .catch(error => {
-    console.error('Fetch Error 1:', error);
-  });
-};
-//Code to recall local storage information and display it on the map. incomplete
-function previousL(savedLocationDetails){
-  for (var i = 0; i < savedLocationDetails.length; i++){
-    //need to create code to add the savedLocationsDetails to the map here
-  };
-};
-
-previousBtn.addEventListener('click', function () {
-
-  let savedSearchData = localStorage.getItem('lastSearchData')
-
-=======
->>>>>>> 8b755433f12a2c22af6499fe3717f624d89f371a
   if (savedSearchData) {
     const searchData = JSON.parse(savedSearchData);
     searchBar.value = searchData.savedMovie; // Populate the search bar with the saved movie title
