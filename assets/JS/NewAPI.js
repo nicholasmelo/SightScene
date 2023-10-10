@@ -1,4 +1,4 @@
-const apiKey = '5131599b8amsh5cd7960c965ca44p1c76fcjsnf65b00e1bb62';
+const apiKey = '66c1ef1f94msh8651ee6ecab8edbp195f28jsn7054b5e3cfe0';
 let movieName = '';
 const searchBar = document.querySelector(".searchBar");
 const searchBtn = document.querySelector(".searchBtn");
@@ -14,56 +14,56 @@ let savedLocationDetails = [];
 
 
 //Modal function for Network Modal
-function openNModal() {
-  nModal.classList.remove('hidden');
-};
+//function openNModal() {
+//  nModal.classList.remove('hidden');
+//};
 
-function closeNModal() {
-  nModal.classList.add('hidden');
-};
+//function closeNModal() {
+//  nModal.classList.add('hidden');
+//};
 
-nModal.addEventListener('click', (event) => {
-  if (event.target === nModal) {
-    closeNModal();
-  }
-});
+//nModal.addEventListener('click', (event) => {
+//  if (event.target === nModal) {
+//    closeNModal();
+//  }
+//});
 
 //Modal function for Title modal
-function openTModal() {
-  tModal.classList.remove('hidden');
-};
+//function openTModal() {
+//  tModal.classList.remove('hidden');
+//};
 
-function closeTModal() {
-  tModal.classList.add('hidden');
-};
+//function closeTModal() {
+//  tModal.classList.add('hidden');
+//};
 
-tModal.addEventListener('click', (event) => {
-  if (event.target === tmodal) {
-    closeTModal();
-  }
-});
+//tModal.addEventListener('click', (event) => {
+//  if (event.target === tmodal) {
+//    closeTModal();
+//  }
+//});
 
 //Modal function for Location Modal
-function openLModal() {
-  lModal.classList.remove('hidden');
-};
+//function openLModal() {
+//  lModal.classList.remove('hidden');
+//};
 
-function closeLModal() {
-  lModal.classList.add('hidden');
-};
+//function closeLModal() {
+//  lModal.classList.add('hidden');
+//};
 
-lModal.addEventListener('click', (event) => {
-  if (event.target === lModal) {
-    closeLModal();
-  }
-});
+//lModal.addEventListener('click', (event) => {
+//  if (event.target === lModal) {
+//    closeLModal();
+//  }
+//});
 
 
 //Function that handles search function
 function getMovie() {
   movieName = searchBar.value;
-
-  const url = `https://moviesminidatabase.p.rapidapi.com/movie/imdb_id/byTitle/${encodeURIComponent(movieName)}/`;
+  
+  const url = `https://moviesdatabase.p.rapidapi.com/titles/search/title/${movieName}?titleType=movie`;
 
   console.log('Request URL:', url); // Log the request URL
 
@@ -71,8 +71,8 @@ function getMovie() {
   fetch(url, {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': apiKey,
-      'X-RapidAPI-Host': 'moviesminidatabase.p.rapidapi.com'
+		'X-RapidAPI-Key': '66c1ef1f94msh8651ee6ecab8edbp195f28jsn7054b5e3cfe0',
+		'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
     }
   })
   .then(response => {
@@ -83,10 +83,11 @@ function getMovie() {
     return response.json();
     })
   .then(data => {
+    console.log('Request URL:', url); // Log the request URL
     console.log('API Response Data:', data);
     if (data && Array.isArray(data.results) && data.results.length >= 0) {
-      let movieID = data.results[0].imdb_id;
-      let movieTitle = data.results[0].title; //Gets movie title info from the fetch
+      let movieID = data.results[0].id;
+      let movieTitle = data.results[0].originalTitleText.text; //Gets movie title info from the fetch
       
       console.log('MovieID: ', movieID);
       console.log('Movie Name: ', movieTitle);
@@ -182,23 +183,23 @@ function getMovie() {
   });
 };
 //Code to recall local storage information and display it on the map. incomplete
-function previousL(savedLocationDetails){
-  for (var i = 0; i < savedLocationDetails.length; i++){
-    //need to create code to add the savedLocationsDetails to the map here
-  };
-};
+//function previousL(savedLocationDetails){
+//  for (var i = 0; i < savedLocationDetails.length; i++){
+//    //need to create code to add the savedLocationsDetails to the map here
+//  };
+//};
 
-previousBtn.addEventListener('click', function () {
-
-  let savedSearchData = localStorage.getItem('lastSearchData')
-
-  if (savedSearchData) {
-    const searchData = JSON.parse(savedSearchData);
-    searchBar.value = searchData.savedMovie; // Populate the search bar with the saved movie title
+//previousBtn.addEventListener('click', function () {
+//
+//  let savedSearchData = localStorage.getItem('lastSearchData')
+//
+// if (savedSearchData) {
+//    const searchData = JSON.parse(savedSearchData);
+//    searchBar.value = searchData.savedMovie; // Populate the search bar with the saved movie title
 
     // Use the location information to populate the map
-    populateMapWithLocationData(searchData.savedLocation);
-  }
-})
+//    populateMapWithLocationData(searchData.savedLocation);
+//  }
+//})
 searchBtn.addEventListener('click', getMovie);
-searchBtn.addEventListener('click', console.log('Button Cli'))
+searchBtn.addEventListener('click', console.log('Button Clicked'))
