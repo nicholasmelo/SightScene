@@ -2,6 +2,7 @@ const apiKey = '5131599b8amsh5cd7960c965ca44p1c76fcjsnf65b00e1bb62';
 let movieName = '';
 const searchBar = document.querySelector(".searchBar");
 const searchBtn = document.querySelector(".searchBtn");
+const goBack = document.querySelector(".goBack");
 let movieLo ='';
 
 
@@ -72,51 +73,8 @@ function addMovieLocationMarker(location, title) {
           console.log(data.results.locations.locations[0][0]);
           let movieLo = data.results.locations.locations[0][0];
           console.log('Addresses:', movieLo);
-          var addresses = [movieLo]; //Sets the addresses array with the MovieLo info grabbed from the mini movies api
-          var geocoder = new google.maps.Geocoder();
-          
-          // Iterate over the array and geocode each address.
-          for (var i = 0; i < addresses.length; i++) {
-            // Capture the address variable in a closure.
-            (function(address) {
-              // Geocode the address.
-              geocoder.geocode({ address: address }, function(results, status) {
-                if (status == google.maps.GeocoderStatus.OK) {
-                  // Get the latitude and longitude of the address.
-                  var latitude = results[0].geometry.location.lat();
-                  var longitude = results[0].geometry.location.lng();
-                  var locationDetails = [
-                    address,
-                    latitude,
-                    (-longitude)
-                  ];
-                  console.log("Location Details Array:", locationDetails);
-                  
-                  //loop through given locations array to generate on map
-                  for (var i = 0; i < locationDetails.length; ++i) {
-                    // adds location label onto markers
-                    console.log("length: ", locationDetails.length);
-                    console.log("i: ", i);
-                    console.log("details: ", locationDetails[i]);
-                    console.log("location details: ", locationDetails[1], "and second: ", locationDetails[2]);
-                    InfoWindow = new google.maps.InfoWindow({
-                      content: locationDetails[i],
-                      position: new google.maps.LatLng(locationDetails[1], locationDetails[2]),
-                      //position: new google.maps.LatLng(40.76078, -111.89105),
-                      map: map,
-                    });
-                    console.log("info window:", infoWindow);
-                  }
-                  
-                  // Display the coordinates on the web page.
-                  console.log("for "+ address + " the corresponding latitude is " + latitude + " and the corresponding longitude is " + longitude + ".");
-                } else {
-                  // Handle the error.
-                  console.log("Geocoding failed:", status);
-                }
-              });
-            })(addresses[i]);
-          } 
+          var locations = [movieLo]; //Sets the addresses array with the MovieLo info grabbed from the mini movies api
+                    
           //Setting local storage info here.
           const searchData = {
             savedMovie: movieTitle,
@@ -136,6 +94,7 @@ function addMovieLocationMarker(location, title) {
     console.error('Fetch Error 1:', error);
   });
 };
+
 //Code to recall local storage information and display it on the map. incomplete
 function previousL(savedLocationDetails){
   for (var i = 0; i < savedLocationDetails.length; i++){
@@ -147,6 +106,44 @@ previousBtn.addEventListener('click', function () {
 
   let savedSearchData = localStorage.getItem('lastSearchData')
 
+<<<<<<< HEAD
+        var locationDetails = [
+            address,
+            latitude,
+            (-longitude)
+          ];
+      console.log("Location Details Array:", locationDetails);
+}
+
+          localStorage.setItem('lastSearchData', JSON.stringify(searchData));
+          
+        } 
+        else {
+          openTModal();
+        }
+      }) 
+    } 
+    else {
+      openLModal();
+    }
+  })
+  .catch(error => {
+    console.error('Fetch Error 1:', error);
+  });
+};
+//Code to recall local storage information and display it on the map. incomplete
+function previousL(savedLocationDetails){
+  for (var i = 0; i < savedLocationDetails.length; i++){
+    //need to create code to add the savedLocationsDetails to the map here
+  };
+};
+
+previousBtn.addEventListener('click', function () {
+
+  let savedSearchData = localStorage.getItem('lastSearchData')
+
+=======
+>>>>>>> 8b755433f12a2c22af6499fe3717f624d89f371a
   if (savedSearchData) {
     const searchData = JSON.parse(savedSearchData);
     searchBar.value = searchData.savedMovie; // Populate the search bar with the saved movie title
