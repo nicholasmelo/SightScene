@@ -202,3 +202,4 @@ previousBtn.addEventListener('click', function () {
   }
 })
 searchBtn.addEventListener('click', getMovie);
+searchBtn.addEventListener('click', console.log('Button Clii'))
