@@ -9,14 +9,9 @@ AS a movie fanatic and a lover of travel, I want to visit the filming locations 
 No intallation needed. Web Application is accessed through a URL. 
 
 ## Usage
-Upon navigating to SightScene URL user will be presented with a search bar. User can search movie library by title. Then user is presented with a map and list of filming locations from the searched movie. When user selects a location they have the option to navigate to that location and will be presented with driving/walking directions. User can also use navigation bar to search another movie title or go back to the homepage.
+Upon navigating to https://nicholasmelo.github.io/SightScene/ user will be presented with a search bar. User can search movie library by title. Then user is presented with a map and list of filming locations from the searched movie. When user selects a location they have the option to navigate to that location and will be presented with driving/walking directions. User can also use navigation bar to search another movie title or go back to the homepage.
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
-
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
-
+![Homepage Screenshot](assets/Images/screenshot.png)
 ## Credits
 
 Project Collaborators inlcude;
