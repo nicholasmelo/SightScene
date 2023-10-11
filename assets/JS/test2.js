@@ -123,7 +123,7 @@ function getMovie() {
           console.log(data.results.filmingLocations.edges[0].node.text);
          movieLo = data.results.filmingLocations.edges[0].node.text;
           console.log('Addresses:', movieLo);
-          var locations = [movieLo]; //Sets the addresses array with the MovieLo info grabbed from the mini movies api
+          locations.push(movieLo); //Sets the addresses array with the MovieLo info grabbed from the mini movies api
           
           //Setting local storage info here.
           const searchData = {
@@ -139,7 +139,29 @@ function getMovie() {
     } else {
       openLModal();
     }
-  })
+  });
+
+  function initMap(callback) {
+
+        // Request needed libraries.
+        const { Map } = await google.maps.importLibrary("maps");
+        const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+        const { PinElement } = await google.maps.importLibrary("marker");
+      
+        directionsService = new google.maps.DirectionsService();
+        directionsRenderer = new google.maps.DirectionsRenderer();
+      
+        var mapOptions = {
+          zoom: 9,
+          //map renders centered on Salt Lake City, Utah
+          center: { lat: 40.76078, lng: -111.89105 },
+          //customized map display colors at https://console.cloud.google.com/google/maps-apis/studio/styles/new/edit?project=my-project-1-400500
+          mapId: "78bd156d9d1c765e",
+        };
+      
+        // places map on page in the location designated "map" in our html based on our mapOptions
+        map = new /*google.maps.*/ Map(document.getElementById("map"), mapOptions);
+  }
   .catch(error => {
     console.error('Fetch Error 1:', error);
   });
@@ -237,6 +259,8 @@ const movieAdd = [movieLo];
 
 const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(movieAdd)}&key=${apiKey}`;
 
+
+// fetch to turn the movieLo into coordinates that will put a mark on the map
 fetch(geocodingUrl)
   .then((response) => {
     if (!response.ok) {
