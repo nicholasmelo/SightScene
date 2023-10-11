@@ -5,68 +5,23 @@ const searchBtn = document.querySelector(".searchBtn");
 const goBack = document.querySelector(".goBack");
 let movieLo ='';
 
-//Brings modals into JS
-const nModal = document.getElementById('mNetwork');
-const tModal = document.getElementById('mTitle');
-const lModal = document.getElementById('mLocation');
-
-//Local Storage declarations
-let savedLocationDetails = [];
-
-
-//Modal function for Network Modal
-function openNModal() {
-  nModal.classList.remove('hidden');
-};
-
-function closeNModal() {
-  nModal.classList.add('hidden');
-};
-
-nModal.addEventListener('click', (event) => {
-  if (event.target === nModal) {
-    closeNModal();
-  }
-});
-
-//Modal function for Title modal
-function openTModal() {
-  tModal.classList.remove('hidden');
-};
-
-function closeTModal() {
-  tModal.classList.add('hidden');
-};
-
-tModal.addEventListener('click', (event) => {
-  if (event.target === tmodal) {
-    closeTModal();
-  }
-});
-
-//Modal function for Location Modal
-function openLModal() {
-  lModal.classList.remove('hidden');
-};
-
-function closeLModal() {
-  lModal.classList.add('hidden');
-};
-
-lModal.addEventListener('click', (event) => {
-  if (event.target === lModal) {
-    closeLModal();
-  }
-});
-
 
 //Function that handles search function
-function getMovie() {
+function getMovie() 
   movieName = searchBar.value;
 
-  const url = `https://moviesminidatabase.p.rapidapi.com/movie/imdb_id/byTitle/${encodeURIComponent(movieName)}/`;
+function addMovieLocationMarker(location, title) {
+  // Create a marker for the movie location
+  var marker = new google.maps.Marker({
+    position: location,
+    map: map,
+    title: title,
+  });
 
-  console.log('Request URL:', url); // Log the request URL
+  // Add an info window with movie information
+  var infoWindow = new google.maps.InfoWindow({
+    content: '<strong>' + title + '</strong><br>' + location,
+  });
 
   //First Fetch request for MiniMovies API to get Movie ID
   fetch(url, {
@@ -151,44 +106,6 @@ previousBtn.addEventListener('click', function () {
 
   let savedSearchData = localStorage.getItem('lastSearchData')
 
-<<<<<<< HEAD
-        var locationDetails = [
-            address,
-            latitude,
-            (-longitude)
-          ];
-      console.log("Location Details Array:", locationDetails);
-}
-
-          localStorage.setItem('lastSearchData', JSON.stringify(searchData));
-          
-        } 
-        else {
-          openTModal();
-        }
-      }) 
-    } 
-    else {
-      openLModal();
-    }
-  })
-  .catch(error => {
-    console.error('Fetch Error 1:', error);
-  });
-};
-//Code to recall local storage information and display it on the map. incomplete
-function previousL(savedLocationDetails){
-  for (var i = 0; i < savedLocationDetails.length; i++){
-    //need to create code to add the savedLocationsDetails to the map here
-  };
-};
-
-previousBtn.addEventListener('click', function () {
-
-  let savedSearchData = localStorage.getItem('lastSearchData')
-
-=======
->>>>>>> 8b755433f12a2c22af6499fe3717f624d89f371a
   if (savedSearchData) {
     const searchData = JSON.parse(savedSearchData);
     searchBar.value = searchData.savedMovie; // Populate the search bar with the saved movie title
@@ -198,4 +115,3 @@ previousBtn.addEventListener('click', function () {
   }
 })
 searchBtn.addEventListener('click', getMovie);
-searchBtn.addEventListener('click', console.log('Button Clii'))
