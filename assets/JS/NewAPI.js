@@ -105,6 +105,9 @@ async function initMap() {
     //set infoWindow content to the directionsLink content string
     infoWindowContent = directionsLink;
 
+    //center map to hardcorded location
+    map.setCenter({lat: 45.8918, lng: 123.9615});
+
     //EventListener for directions link
     directionsLink.addEventListener("click", function (event) {
       console.log("directions link clicked");

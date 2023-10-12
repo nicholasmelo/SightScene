@@ -7,10 +7,24 @@ let directionsRenderer;
 let markers = [];
 let infoWindows = [];
 
+/*       //Get current location from geocoder API in city/state form
+      let originLocation;
+      //let originLocationLat = 0;
+      //let originLocationLng = 0;
+      navigator.geolocation.getCurrentPosition((position) => {
+        console.log(position.coords.latitude, position.coords.longitude);
+        var originLocationLat = position.coords.latitude;
+        var originLocationLng = position.coords.longitude;
+
+        //MUST BE IN CITY/STATE
+        originLocation = { lat: originLocationLat, lng: originLocationLng };;
+        console.log("your current location is " + originLocation);
+      }); */
+
 //calculate route to selected location
 function GetDirections() {
   //orign should = originLocation (city/state)
-  var origin = "moab, ut";
+  var origin = originLocation;
   var destination = "salt lake city, ut";
 
   var request = {
@@ -53,7 +67,7 @@ async function initMap() {
 
   //replace with data from miniMoviesAPI *DD Coordinate Form*
   //e.g. The Sandlot Movie
-/*   var locations = [
+  var locations = [
     {
       position: { lat: 40.7377753822, lng: -111.889054777 },
       title: "Smith Ballpark",
@@ -74,9 +88,9 @@ async function initMap() {
       position: { lat: 40.7608, lng: -111.8911 },
       title: "Salt Lake City",
     },
-  ]; */
+  ];
 
-  var locations = [movieLo];
+  //var locations = [movieLo];
 
   // Create an info window to share between markers.
   var infoWindow = new google.maps.InfoWindow();
@@ -116,11 +130,11 @@ async function initMap() {
       //let originLocationLng = 0;
       navigator.geolocation.getCurrentPosition((position) => {
         console.log(position.coords.latitude, position.coords.longitude);
-        originLocationLat = position.coords.latitude;
-        originLocationLng = position.coords.longitude;
+        var originLocationLat = position.coords.latitude;
+        var originLocationLng = position.coords.longitude;
 
         //MUST BE IN CITY/STATE
-        originLocation = "moab, ut";
+        originLocation = { lat: originLocationLat, lng: originLocationLng };
         console.log("your current location is " + originLocation);
       });
 
